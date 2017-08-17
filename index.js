@@ -20,9 +20,6 @@ var DEFAULT_RETRY_BACKOFF_MAX_MS = 1000;
 
 function RunningRequestContextArguments(contextArgs) {
   contextArgs = contextArgs || {};
-  if (!(this instanceof RunningRequestContextArguments)) {
-    return new RunningRequestContextArguments(contextArgs);
-  }
   if (typeof contextArgs.sendRequest !== 'function') {
     throw new ReferenceError('sendRequest is not a function');
   }
