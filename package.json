@@ -1,0 +1,34 @@
+{
+  "name": "repeatable-request",
+  "version": "1.0.0",
+  "description": "A javascript library to make repeat the request based on some condition(mostly error) maximum on n times with a backoff strategy",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test/*test.js;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varunnayal/repeatable-request.git"
+  },
+  "keywords": [
+    "Repeat",
+    "Error",
+    "Repeat",
+    "Repeat",
+    "on",
+    "Error",
+    "setTimeout",
+    "callback",
+    "pattern"
+  ],
+  "author": "Varun Nayal <varunnayal@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/varunnayal/repeatable-request/issues"
+  },
+  "homepage": "https://github.com/varunnayal/repeatable-request#readme",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0"
+  }
+}
