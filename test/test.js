@@ -139,4 +139,18 @@ describe('Repeatable request', function() {
       }
     );
   });
+
+  it('should throw error if sendRequest is not passed', function(done) {
+    expect(repeatableRequest.bind(null,
+      null,
+      11,
+      function (error, data) {
+        expect(data).to.deep.equal({ tryNum: 5, args: 11 });
+        expect(error).to.equal(null);
+        done();
+      }
+    )).to.throw('sendRequest is not a function');
+    done();
+  });
+
 });
