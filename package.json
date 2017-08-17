@@ -29,6 +29,7 @@
   "homepage": "https://github.com/varunnayal/repeatable-request#readme",
   "devDependencies": {
     "chai": "^4.1.1",
-    "mocha": "^3.5.0"
+    "mocha": "^3.5.0",
+    "object-assign": "^4.1.1"
   }
 }

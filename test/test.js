@@ -1,4 +1,5 @@
 const chai = require('chai');
+const assign = require('object-assign');
 const expect = chai.expect;
 
 const repeatableRequest = require('..');
@@ -23,7 +24,7 @@ function sendRequestHelperWithFn(maxN, beforeFn, afterFn) {
   var n = -1;
   if (typeof beforeFn !== 'function') {
     // Send repeatable error
-    beforeFn = function (tryNum, done) { done(Object.assign({tryNum: tryNum}, repeatableError)); }
+    beforeFn = function (tryNum, done) { done(assign({tryNum: tryNum}, repeatableError)); }
   }
   if (typeof afterFn !== 'function') {
     // Send success call
@@ -52,7 +53,7 @@ describe('Repeatable request', function() {
       1,
       // Done
       function (error, data) {
-        expect(error).to.deep.equal(Object.assign({ tryNum: 3 }, repeatableError));
+        expect(error).to.deep.equal(assign({ tryNum: 3 }, repeatableError));
         expect(data).to.equal(undefined);
         done();
       }
@@ -108,11 +109,11 @@ describe('Repeatable request', function() {
     var args = 24;
     repeatableRequest(
       { maxRetryCount: 0, backoffRange: { start: 50, end: 100 },
-        sendRequest: sendRequestHelperWithFn(0, function(tryNum, done) { done(Object.assign({tryNum: tryNum}, nonRepeatableError)) }),
+        sendRequest: sendRequestHelperWithFn(0, function(tryNum, done) { done(assign({tryNum: tryNum}, nonRepeatableError)) }),
       },
       args,
       function (error, data) {
-        expect(error).to.deep.equal(Object.assign({tryNum: 0}, nonRepeatableError));
+        expect(error).to.deep.equal(assign({tryNum: 0}, nonRepeatableError));
         expect(data).to.equal(undefined);
         done();
       }
