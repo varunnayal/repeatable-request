@@ -6,19 +6,6 @@ const repeatableRequest = require('..');
 
 var repeatableError = { retryable: true, message: 'repeatable' };
 var nonRepeatableError = { message: 'Error message' };
-var sendRequestHelper = function(maxN, helperFun) {
-  var n = -1;
-  return function (args, done) {
-    n += 1;
-    if (n <= maxN ) {
-      return setTimeout(function () { done(repeatableError) });
-    }
-    if (helperFun) {
-      return setTimeout(function () { helperFun(n, done) });
-    }
-    return setTimeout(function () { done(null, { args: args, tryNum: n }) });
-  }
-};
 
 function sendRequestHelperWithFn(maxN, beforeFn, afterFn) {
   var n = -1;
@@ -38,9 +25,6 @@ function sendRequestHelperWithFn(maxN, beforeFn, afterFn) {
     }
     return setTimeout(function() { afterFn(n, done, args); });
   }
-}
-
-var exhaustRetries = function (done, error, data) {
 }
 
 describe('Repeatable request', function() {
